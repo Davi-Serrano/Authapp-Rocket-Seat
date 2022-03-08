@@ -3,6 +3,7 @@ interface ProductItemProps {
         id: number;
         price: number;
         title: string;
+        priceFormatted: string;
     }
     addToWishList: (id:number)=>void;
 
