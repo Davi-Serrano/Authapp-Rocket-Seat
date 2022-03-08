@@ -4,13 +4,15 @@ interface ProductItemProps {
         price: number;
         title: string;
     }
-    
+    addToWishList: (id:number)=>void;
+
 }
 
-export function ProductItem({product}:ProductItemProps){
+export function ProductItem({product, addToWishList}:ProductItemProps){
     return(
         <div>
             {product.title} - <strong>{product.price} </strong>
+            <button onClick={()=>addToWishList}>Add to wish List</button>
         </div>
     )
 }
