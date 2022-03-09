@@ -1,5 +1,5 @@
 
-interface addProductToWishListProps{
+export interface addProductToWishListProps{
     onAddToWishList:()=>void;
     onRequestClose:()=>void;
 }

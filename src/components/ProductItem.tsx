@@ -1,5 +1,6 @@
-import { memo, useState } from "react";
-import { addProductToWishList } from  "./addProductToWishList"
+import { memo, useState, lazy } from "react";
+import {addProductToWishListProps} from "./addProductToWishList"
+// import { addProductToWishList } from  "./addProductToWishList"
 
 interface ProductItemProps {
     product:{
@@ -13,6 +14,11 @@ interface ProductItemProps {
 }
 
 export function ProductItemComponent({product, addToWishList}:ProductItemProps){
+    const AddProducttoWishlist = lazy<addProductToWishListProps>(()=>{
+        return import('./addProductToWishList').then(mod => add.addProductToWishList)
+    })
+
+
     const [isAddingToWishList, setIsAddingToWishList] = useState(false)
 
     return(
@@ -20,7 +26,7 @@ export function ProductItemComponent({product, addToWishList}:ProductItemProps){
             {product.title} - <strong>{product.price} </strong>
             <button onClick={()=> setIsAddingToWishList(true)}>  Adicionar aos favoritos?</button>
             
-            {isAddingToWishList &&  (<addProductToWishList
+            {isAddingToWishList &&  (<AddProducttoWishlist
 
               onAddToWishList={()=>addToWishList(product.id)} 
               onRequestClose={()=>setIsAddingToWishList(false)}
